@@ -1,9 +1,24 @@
-# Grandpa Care
+# thingy-client-brown
 
-We want to increase people's safety by making it possible
-for elderly people to be cared for even if nobody is
-physically near them.
+## Project setup
+```
+npm install
+```
 
-Therefore, the old person gets a Thingy they keep with
-them, and some other person gets access to a web application
-that is connected to the Thingy.
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Run your unit tests
+```
+npm run test:unit
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
