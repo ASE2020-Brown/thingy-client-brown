@@ -65,6 +65,9 @@ typings/
 # Output of 'npm pack'
 *.tgz
 
+# Laravel Mix
+node_modules
+
 # Yarn Integrity file
 .yarn-integrity
 
