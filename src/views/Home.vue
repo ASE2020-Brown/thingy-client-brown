@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <h1>Grandpa Care</h1>
     <ThingyStatus sensorId="brown-3"/>
     <CurrentTemperature sensorId="brown-3"/>
   </div>

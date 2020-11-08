@@ -1,8 +1,8 @@
 <template>
   <div>
     <h3>Thingy {{ sensorId }} status:</h3> 
-    <span v-if="status"> ON</span>
-    <span v-else> OFF</span>
+    <v-icon v-if="status" color="green">swap_vertical_circle</v-icon>
+    <v-icon v-else>power_off</v-icon>
   </div>
 </template>
 
@@ -22,7 +22,6 @@ export default {
     getSensorStatus(sensorId){
       axios.get('http://localhost:3000/connected/' + sensorId).then(
         response => {
-          console.log(response);
           if(response.data)
             this.status = true;
         }
