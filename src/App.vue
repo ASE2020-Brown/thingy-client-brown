@@ -30,7 +30,7 @@
     </v-app-bar>
 
     <v-main>
-      <Home/>
+      <router-view/>
     </v-main>
   </v-app>
 </template>
