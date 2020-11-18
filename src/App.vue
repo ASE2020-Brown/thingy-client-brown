@@ -5,7 +5,7 @@
       color="blue lighten-1"
       dark
     >
-      <div class="d-flex align-center">
+      <a href="/" class="d-flex align-center text-decoration-none">
         <v-img
           alt="Grandpa Care Logo"
           class="shrink mr-2"
@@ -15,8 +15,8 @@
           width="40"
         />
 
-        <h2>Grandpa Care</h2>
-      </div>
+        <h2 style="color: white;">Grandpa Care</h2>
+      </a>
 
       <v-spacer></v-spacer>
 
