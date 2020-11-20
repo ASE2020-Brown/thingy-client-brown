@@ -7,7 +7,7 @@
       <v-form>
         <v-text-field
             type="text"
-            label="Username"
+            label="Email"
             prepend-inner-icon="mdi-account-circle">
         </v-text-field>
         <v-text-field
