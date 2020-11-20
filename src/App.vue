@@ -40,6 +40,10 @@
 export default {
   name: 'App',
 
+  icons: {
+    iconfont: 'mdi',
+  },
+
   components: {
 
   },
