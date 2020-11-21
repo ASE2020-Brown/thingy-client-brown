@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <h3>Current temperature: {{ temperature }}</h3>
-    
-  </div>
+  <p>Current temperature: {{ temperature }}</p>
 </template>
 
 <script>

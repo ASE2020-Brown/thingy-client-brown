@@ -15,7 +15,7 @@
     </v-card-title>
     <v-card-text>
       <CurrentTemperature v-if="connected" :sensor-id="sensorId"></CurrentTemperature>
-      <p v-else>No information</p>
+      <p v-else class="grey--text">No information</p>
     </v-card-text>
   </v-card>
 </template>
