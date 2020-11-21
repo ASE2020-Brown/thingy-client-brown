@@ -1,7 +1,6 @@
 <template>
   <div class="home">
     <ThingyStatus sensorId="brown-3"/>
-    <CurrentTemperature sensorId="brown-3"/>
     <AlarmPanicButton />
   </div>
 </template>
