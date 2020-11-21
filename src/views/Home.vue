@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <ThingyStatus sensorId="brown-3"/>
+    <ThingyStatus v-for="thingy in thingyList" :sensorId="thingy"/>
     <AlarmPanicButton />
   </div>
 </template>
@@ -13,6 +13,14 @@ import AlarmPanicButton from '@/components/AlarmPanicButton.vue'
 
 export default {
   name: 'Home',
+  data: function () {
+    return {
+      thingyList: [
+          'brown-1',
+          'brown-3',
+      ],
+    }
+  },
   components: {
     CurrentTemperature,
     ThingyStatus,
