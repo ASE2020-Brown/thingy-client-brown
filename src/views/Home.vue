@@ -7,8 +7,8 @@
 
 <script>
 // @ is an alias to /src
-import CurrentTemperature from '@/components/CurrentTemperature.vue'
-import ThingyStatus from '@/components/ThingyStatus.vue'
+import CurrentTemperature from '@/components/ThingyInfo.vue'
+import ThingyStatus from '@/components/Thingy.vue'
 import AlarmPanicButton from '@/components/AlarmPanicButton.vue'
 
 export default {

@@ -22,7 +22,7 @@
 
 <script>
 import axios from 'axios';
-import CurrentTemperature from "@/components/CurrentTemperature";
+import CurrentTemperature from "@/components/ThingyInfo";
 export default {
   name: 'ThingyStatus',
   components: {CurrentTemperature},
