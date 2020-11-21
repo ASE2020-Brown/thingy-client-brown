@@ -5,9 +5,10 @@
         <h3 v-text="sensorId"></h3>
         <p class="my-auto ml-3 px-2 rounded-pill text-caption"
            :class="connected ? 'success' : 'secondary'">
-          <v-icon class="mr-1 white--text">
-            {{ connected ? 'mdi-check-bold' : 'power_off' }}
-          </v-icon>
+          <v-icon
+              class="mr-1 white--text"
+              v-text="connected ? 'mdi-check-bold' : 'power_off'"
+          ></v-icon>
           <span class="white--text"><span v-if="!connected">not </span>connected</span>
         </p>
       </v-row>
