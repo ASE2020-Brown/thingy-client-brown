@@ -11,6 +11,13 @@
         </v-card-title>
         <v-card-text>This is an alarm. Panic button was pressed.</v-card-text>
         <v-card-actions>
+          <v-btn
+              color="red"
+              text
+              @click="sendMessage"
+          >
+            I'm on the way!
+          </v-btn>
           <v-spacer></v-spacer>
           <v-btn
             color="green darken-1"
