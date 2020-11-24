@@ -1,11 +1,11 @@
 # thingy-client-brown
 
-## Project setup
+## Installation
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Start
 ```
 npm run serve
 ```
