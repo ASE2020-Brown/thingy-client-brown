@@ -1,5 +1,5 @@
 <template>
-  <v-card max-width="500px" class="mt-5 mx-auto">
+  <v-card max-width="500px" class="mt-5 mx-auto" v-if="!registered">
     <v-card-title>
       <h1>Register</h1>
     </v-card-title>
@@ -8,11 +8,13 @@
         <v-text-field
             type="text"
             label="Email"
+            v-model="username"
             prepend-inner-icon="mdi-account-circle">
         </v-text-field>
         <v-text-field
             :type="visiblePassword ? 'text' : 'password'"
             label="Password"
+            v-model="password"
             prepend-inner-icon="mdi-lock"
             :append-icon="visiblePassword ? 'mdi-eye' : 'mdi-eye-off'"
             @click:append="visiblePassword = !visiblePassword"
@@ -30,9 +32,18 @@
     <v-card-actions>
       <p class="my-auto mx-3">Already have an account? <a href="/login">Login</a></p>
       <v-spacer></v-spacer>
-      <v-btn color="info">Login</v-btn>
+      <v-btn color="info" @click="register">Register</v-btn>
     </v-card-actions>
   </v-card>
+  <v-card max-width="500px" class="mt-5 mx-auto" v-else>
+    <v-card-title>
+      <h1>Register</h1>
+    </v-card-title>
+    <v-card-text>
+      User registered!
+    </v-card-text>
+  </v-card>
+
 </template>
 
 <script>
@@ -45,10 +56,22 @@ export default {
   data: function () {
     return {
       visiblePassword: false,
+      username: null,
+      password: null,
+      registered: false
     }
   },
   methods: {
-
+    register(){
+      axios.post('http://localhost:3000/register', {
+            "username": this.username,
+            "password": this.password
+          }
+      ).then(response => {
+        console.log(response);
+        this.registered= true
+      })
+    }
   },
   mounted() {
 

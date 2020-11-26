@@ -14,7 +14,7 @@
       </v-row>
     </v-card-title>
     <v-card-text>
-      <CurrentTemperature v-if="connected" :sensor-id="sensorId"></CurrentTemperature>
+      <CurrentTemperature v-if="connected" :sensor="sensorId"></CurrentTemperature>
       <p v-else class="grey--text">No information</p>
     </v-card-text>
   </v-card>
@@ -31,12 +31,17 @@ export default {
   },
   data: function () {
     return {
-      connected: false
+      connected: false,
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidXNlciIsInJvbGUiOiJhZG1pbiIsImp0aSI6IjQzMWI1ZjdjLTY4ZTktNDc4Ny1hYTlmLWRjZWVjOTFkNzhlNiIsImlhdCI6MTYwNjM4MjkyM30.ciguBMplJjaofixJNXB9pEy3XSBaUEHZM6yynZ0rM9s'
     }
   },
   methods: {
     getSensorStatus(sensorId){
-      axios.get('http://localhost:3000/connected/' + sensorId).then(
+      axios.get('http://localhost:3000/connected/' + sensorId, {
+        headers: {
+          'Authorization': 'Bearer ' + this.token 
+        }
+      }).then(
         response => {
           if(response.data)
             this.connected = true;

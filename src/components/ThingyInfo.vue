@@ -7,12 +7,12 @@ import axios from 'axios';
 export default {
   name: 'CurrentTemperature',
   props: {
-    sensorId: String
+    sensor: String
   },
   data: function () {
     return {
       temperature: null,
-      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidXNlciIsInJvbGUiOiJhZG1pbiIsImp0aSI6IjU1NTliNmY4LThlYzUtNDFhNy1iZDE5LTNkZmI1OTNmOWEwOCIsImlhdCI6MTYwNTc4ODQyOX0.d5larPasfcIs402mBbuuhUcSCFetBXMHaGRLrzu8yTA'
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidXNlciIsInJvbGUiOiJhZG1pbiIsImp0aSI6IjQzMWI1ZjdjLTY4ZTktNDc4Ny1hYTlmLWRjZWVjOTFkNzhlNiIsImlhdCI6MTYwNjM4MjkyM30.ciguBMplJjaofixJNXB9pEy3XSBaUEHZM6yynZ0rM9s'
     }
   },
   methods: {
@@ -34,7 +34,7 @@ export default {
     }
   },
   mounted() {
-    this.getCurrentTemperature(this.sensorId);
+    this.getCurrentTemperature(this.sensor);
   },
 }
 </script>
