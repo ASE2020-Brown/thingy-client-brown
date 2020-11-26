@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <ThingyStatus v-for="thingy in thingyList" :sensorId="thingy"/>
+    <ThingyStatus v-for="thingy in thingyList" :sensorId="thingy" :key="thingy"/>
     <AlarmPanicButton />
   </div>
 </template>

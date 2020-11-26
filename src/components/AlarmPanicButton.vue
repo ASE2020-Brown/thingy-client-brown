@@ -14,7 +14,7 @@
           <v-btn
               color="red"
               text
-              @click="sendMessage"
+              @click="sendMessageHelp(); alarm = false"
           >
             I'm on the way!
           </v-btn>
@@ -33,13 +33,15 @@
 </template>
 <script>
 import io from 'socket.io-client';
+import axios from 'axios';
 export default {
   data() {
       return {
           user: 'jairo',
           message: 'Alarma',
           alarm: false,
-          socket : io('localhost:3000')
+          socket : io('localhost:3000'),
+          token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidXNlciIsInJvbGUiOiJhZG1pbiIsImp0aSI6IjQzMWI1ZjdjLTY4ZTktNDc4Ny1hYTlmLWRjZWVjOTFkNzhlNiIsImlhdCI6MTYwNjM4MjkyM30.ciguBMplJjaofixJNXB9pEy3XSBaUEHZM6yynZ0rM9s'
       }
   },
   methods: {
@@ -49,6 +51,17 @@ export default {
             message: this.message
         });
         this.message = ''
+    },
+    sendMessageHelp() {
+        axios.post('http://localhost:3000/helpyou', {
+            "sensor": "brown-3"
+          },
+          {
+            headers: {
+              'Authorization': 'Bearer ' + this.token 
+            }
+          }
+        )
     }
   },
   mounted() {
