@@ -40,8 +40,13 @@
       <h1>Register</h1>
     </v-card-title>
     <v-card-text>
-      User registered!
+      <v-alert type="success">Registration successful</v-alert>
     </v-card-text>
+    <v-card-actions>
+      <v-spacer></v-spacer>
+      <v-btn href="/login" color="primary"><v-icon>mdi-account-arrow-right</v-icon>Login now</v-btn>
+      <v-spacer></v-spacer>
+    </v-card-actions>
   </v-card>
 
 </template>
@@ -58,7 +63,7 @@ export default {
       visiblePassword: false,
       username: null,
       password: null,
-      registered: false
+      registered: false,
     }
   },
   methods: {
@@ -69,8 +74,10 @@ export default {
           }
       ).then(response => {
         console.log(response);
-        this.registered= true
-      })
+        this.registered = true;
+      }).catch(error => {
+        console.log(error);
+      });
     }
   },
   mounted() {
