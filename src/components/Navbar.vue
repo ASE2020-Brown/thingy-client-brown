@@ -20,10 +20,20 @@
     <v-spacer></v-spacer>
 
     <v-btn
+        v-if="loggedIn"
         href="/login"
         text
-    >
+      >
       <span class="mr-2">Login</span>
+      <v-icon>account_circle</v-icon>
+    </v-btn>
+
+    <v-btn
+      v-else
+      href="/"
+      text
+      >
+      <span class="mr-2">Logout</span>
       <v-icon>account_circle</v-icon>
     </v-btn>
   </v-app-bar>
@@ -34,11 +44,11 @@ import axios from 'axios';
 export default {
   name: 'Navbar',
   props: {
-
+    loggedIn: false,
   },
   data: function () {
     return {
-
+      loggedIn: false,
     }
   },
   methods: {
