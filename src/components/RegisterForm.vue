@@ -4,6 +4,7 @@
       <h1>Register</h1>
     </v-card-title>
     <v-card-text>
+
       <v-form>
         <v-text-field
             type="text"
@@ -27,13 +28,21 @@
             :append-icon="visiblePassword ? 'mdi-eye' : 'mdi-eye-off'"
             @click:append="visiblePassword = !visiblePassword"
         ></v-text-field>
+        <v-alert v-if="!passwordsAreEqual" type="error">
+          Passwords don't match!
+        </v-alert>
       </v-form>
+
     </v-card-text>
     <v-divider></v-divider>
     <v-card-actions>
+
       <p class="my-auto mx-3">Already have an account? <a href="/login">Login</a></p>
+
       <v-spacer></v-spacer>
+
       <v-btn color="info" @click="submit">Register</v-btn>
+
     </v-card-actions>
   </v-card>
 </template>
