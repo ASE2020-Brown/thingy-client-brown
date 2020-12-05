@@ -22,6 +22,7 @@
         <v-text-field
             :type="visiblePassword ? 'text' : 'password'"
             label="Repeat Password"
+            v-model="passwordRepeat"
             prepend-inner-icon="mdi-lock"
             :append-icon="visiblePassword ? 'mdi-eye' : 'mdi-eye-off'"
             @click:append="visiblePassword = !visiblePassword"
@@ -32,7 +33,7 @@
     <v-card-actions>
       <p class="my-auto mx-3">Already have an account? <a href="/login">Login</a></p>
       <v-spacer></v-spacer>
-      <v-btn color="info" @click="register">Register</v-btn>
+      <v-btn color="info" @click="submit">Register</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -49,10 +50,22 @@ export default {
       visiblePassword: false,
       username: null,
       password: null,
+      passwordRepeat: null,
+      passwordsAreEqual: true,
     }
   },
   methods: {
-    register(){
+    submit() {
+      if (this.check())
+        this.register();
+    },
+
+    check() {
+      this.passwordsAreEqual = (this.password === this.passwordRepeat)
+      return this.passwordsAreEqual;
+    },
+
+    register() {
       axios.post('http://localhost:3000/register', {
             "username": this.username,
             "password": this.password
@@ -64,7 +77,7 @@ export default {
       });
 
       this.$router.push('/login');
-    }
+    },
   },
   mounted() {
 
