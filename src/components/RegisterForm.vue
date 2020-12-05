@@ -5,13 +5,20 @@
     </v-card-title>
     <v-card-text>
 
+      <v-alert v-if="!connection" type="error">
+        Error: Not connected to API! Please try again!
+      </v-alert>
+
       <v-form>
         <v-text-field
             type="text"
-            label="Email"
+            label="Username"
             v-model="username"
             prepend-inner-icon="mdi-account-circle">
         </v-text-field>
+        <v-alert v-if="submittedEmpty" type="error">
+          Username required!
+        </v-alert>
         <v-text-field
             :type="visiblePassword ? 'text' : 'password'"
             label="Password"
@@ -28,7 +35,7 @@
             :append-icon="visiblePassword ? 'mdi-eye' : 'mdi-eye-off'"
             @click:append="visiblePassword = !visiblePassword"
         ></v-text-field>
-        <v-alert v-if="!passwordsAreEqual" type="error">
+        <v-alert v-if="(!submittedEmpty) && (!passwordsAreEqual)" type="error">
           Passwords don't match!
         </v-alert>
       </v-form>
@@ -56,10 +63,14 @@ export default {
   },
   data: function () {
     return {
+      connection: true,
       visiblePassword: false,
+
       username: null,
       password: null,
       passwordRepeat: null,
+
+      submittedEmpty: false,
       passwordsAreEqual: true,
     }
   },
@@ -70,6 +81,15 @@ export default {
     },
 
     check() {
+      return (this.checkName() && this.comparePasswords());
+    },
+
+    checkName() {
+      this.submittedEmpty = (this.username === null || this.username === "");
+      return (!this.submittedEmpty);
+    },
+
+    comparePasswords() {
       this.passwordsAreEqual = (this.password === this.passwordRepeat)
       return this.passwordsAreEqual;
     },
@@ -80,12 +100,13 @@ export default {
             "password": this.password
           }
       ).then(response => {
+        this.connection = true;
         console.log(response);
+        this.$router.push('/login');
       }).catch(error => {
+        this.connection = false;
         console.log(error);
       });
-
-      this.$router.push('/login');
     },
   },
   mounted() {
