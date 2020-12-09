@@ -53,7 +53,6 @@ export default {
       saveLogin: false,
 
       visiblePassword: false,
-      fail: false,
     }
   },
 
@@ -66,9 +65,9 @@ export default {
     },
   },
 
-  watch: {
+  computed: {
     fail: () => {
-      this.fail = store.state.user.failedLogin;
+      return store.state.user.failedLogin;
     }
   },
 
