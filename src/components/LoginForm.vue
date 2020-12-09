@@ -35,6 +35,8 @@
 
 <script>
 import axios from 'axios';
+import store from '../store';
+
 export default {
   name: 'LoginForm',
   props: {
@@ -53,6 +55,7 @@ export default {
     submit() {
       this.login();
       if (!fail) {
+        store.dispatch('user/login', this.username);
         localStorage.token = this.token;
         this.$router.push('/');
       }

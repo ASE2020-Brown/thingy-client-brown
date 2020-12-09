@@ -14,13 +14,13 @@
           width="40"
       />
 
-      <h2 style="color: white;">Grandpa Care</h2>
+      <h2 style="color: white;">Grandpa Care {{ username }}</h2>
     </a>
 
     <v-spacer></v-spacer>
 
     <v-btn
-        v-if="loggedIn"
+        v-if="username === null"
         href="/login"
         text
       >
@@ -33,7 +33,7 @@
       href="/"
       text
       >
-      <span class="mr-2">Logout</span>
+      <span class="mr-2">Logout {{username}}</span>
       <v-icon>account_circle</v-icon>
     </v-btn>
   </v-app-bar>
@@ -41,6 +41,8 @@
 
 <script>
 import axios from 'axios';
+import store from '../store';
+
 export default {
   name: 'Navbar',
   props: {
@@ -56,6 +58,12 @@ export default {
   },
   mounted() {
 
+  },
+
+  computed: {
+    username () {
+      return store.state.user.username;
+    }
   },
 }
 </script>
