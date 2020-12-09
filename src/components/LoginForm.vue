@@ -6,6 +6,9 @@
     <v-card-text>
 
       <v-form>
+        <v-alert v-if="fail" type="error">
+          Login failed: Wrong username or password!
+        </v-alert>
         <v-text-field
             type="text"
             label="Email"
@@ -18,9 +21,6 @@
             :append-icon="visiblePassword ? 'mdi-eye' : 'mdi-eye-off'"
             @click:append="visiblePassword = !visiblePassword"
         ></v-text-field>
-        <v-alert v-if="fail" type="error">
-          Login failed: Wrong username or password!
-        </v-alert>
       </v-form>
 
     </v-card-text>
