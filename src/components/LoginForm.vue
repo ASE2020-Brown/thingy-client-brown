@@ -35,6 +35,7 @@
 
 <script>
 import axios from 'axios';
+
 export default {
   name: 'LoginForm',
   props: {
@@ -51,28 +52,11 @@ export default {
   },
   methods: {
     submit() {
-      this.login();
-      if (!fail) {
-        localStorage.token = this.token;
-        this.$router.push('/');
-      }
+      user.commit('x');
+
     },
 
-    login() {
-      axios.post('http://localhost:3000/login', {
-            "username": this.username,
-            "password": this.password
-          }
-      ).then(response => {
-        this.fail = false;
-        this.token = response;
-        console.log(response);
-      }).catch(error => {
-        this.fail = true;
-        this.token = null;
-        console.log(error);
-      });
-    },
+
   },
   mounted() {
 
