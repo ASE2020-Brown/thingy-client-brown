@@ -72,7 +72,7 @@ export default {
 
       submittedEmpty: false,
       passwordsAreEqual: true,
-    }
+    };
   },
   methods: {
     submit() {

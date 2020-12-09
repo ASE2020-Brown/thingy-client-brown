@@ -12,11 +12,13 @@
         <v-text-field
             type="text"
             label="Email"
+            v-model="username"
             prepend-inner-icon="mdi-account-circle">
         </v-text-field>
         <v-text-field
             :type="visiblePassword ? 'text' : 'password'"
             label="Password"
+            v-model="password"
             prepend-inner-icon="mdi-lock"
             :append-icon="visiblePassword ? 'mdi-eye' : 'mdi-eye-off'"
             @click:append="visiblePassword = !visiblePassword"
@@ -26,59 +28,52 @@
     </v-card-text>
     <v-divider></v-divider>
     <v-card-actions>
+
       <p class="my-auto mx-3">No account yet? <a href="/register">Register now</a></p>
       <v-spacer></v-spacer>
-      <v-btn color="info" @click="submit">Login</v-btn>
+      <v-btn color="info" @click="login">Login</v-btn>
+
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
-import axios from 'axios';
 import store from '../store';
 
 export default {
   name: 'LoginForm',
-  props: {
 
+  props: {
   },
+
   data: function () {
     return {
+      username: '',
+      password: '',
+      saveLogin: false,
+
       visiblePassword: false,
-
-      token: null,
-
       fail: false,
     }
   },
-  methods: {
-    submit() {
-      this.login();
-      if (!fail) {
-        store.dispatch('user/login', this.username);
-        localStorage.token = this.token;
-        this.$router.push('/');
-      }
-    },
 
+  methods: {
     login() {
-      axios.post('http://localhost:3000/login', {
-            "username": this.username,
-            "password": this.password
-          }
-      ).then(response => {
-        this.fail = false;
-        this.token = response;
-        console.log(response);
-      }).catch(error => {
-        this.fail = true;
-        this.token = null;
-        console.log(error);
-      });
+      let username = this.username;
+      let password = this.password;
+      let saveLogin = this.saveLogin;
+      store.dispatch('user/login', { username, password, saveLogin });
     },
   },
-  mounted() {
 
+  watch: {
+    fail: () => {
+      this.fail = store.state.user.failedLogin;
+    }
+  },
+
+  mounted() {
+    store.commit('user/startLogin');
   },
 }
 </script>
