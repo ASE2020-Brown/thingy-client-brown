@@ -4,18 +4,24 @@
 
 <script>
 import axios from 'axios';
+
+
 export default {
   name: 'CurrentTemperature',
   props: {
-    sensor: String
+    sensor: String,
   },
   data: function () {
     return {
       temperature: null,
-      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidXNlciIsInJvbGUiOiJhZG1pbiIsImp0aSI6IjQzMWI1ZjdjLTY4ZTktNDc4Ny1hYTlmLWRjZWVjOTFkNzhlNiIsImlhdCI6MTYwNjM4MjkyM30.ciguBMplJjaofixJNXB9pEy3XSBaUEHZM6yynZ0rM9s'
-    }
+      token: null,
+    };
   },
   methods: {
+    getToken() {
+
+    },
+
     getCurrentTemperature(sensorId){
       axios.get('http://localhost:3000/temperature/' + sensorId, {
         headers: {
@@ -31,7 +37,7 @@ export default {
           console.log(error);
         }
       );
-    }
+    },
   },
   mounted() {
     this.getCurrentTemperature(this.sensor);

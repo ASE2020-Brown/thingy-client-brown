@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
-    <Navbar loggedIn="loggedIn"></Navbar>
+    <Navbar></Navbar>
 
     <v-main>
       <router-view/>
@@ -24,7 +24,6 @@ export default {
   },
 
   data: () => ({
-    loggedIn: false,
   }),
 };
 </script>

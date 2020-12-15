@@ -23,6 +23,7 @@
             :append-icon="visiblePassword ? 'mdi-eye' : 'mdi-eye-off'"
             @click:append="visiblePassword = !visiblePassword"
         ></v-text-field>
+        <v-checkbox v-model="saveLogin" :label="`Save Login Information`"></v-checkbox>
       </v-form>
 
     </v-card-text>

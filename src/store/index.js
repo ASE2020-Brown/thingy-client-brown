@@ -41,7 +41,7 @@ export default new Vuex.Store({
             if (loginData.saveLogin) {
               localStorage.username = loginData.username;
               localStorage.password = loginData.password;
-              console.log('Login information saved')
+              console.log('Login information saved');
             }
             this.router.push('/');
           }).catch(error => {

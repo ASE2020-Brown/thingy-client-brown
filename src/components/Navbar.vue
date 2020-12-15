@@ -14,18 +14,29 @@
           width="40"
       />
 
-      <h2 style="color: white;">Grandpa Care {{ username }}</h2>
+      <h2 style="color: white;">Grandpa Care</h2>
     </a>
 
     <v-spacer></v-spacer>
-    <v-btn
-      v-if="loggedIn"
-      href="/"
-      text
-      >
-      <span class="mr-2">Logout {{username}}</span>
-      <v-icon>account_circle</v-icon>
-    </v-btn>
+
+    <div v-if="loggedIn" class="text-center">
+      <v-menu offset-y>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+              v-bind="attrs"
+              v-on="on"
+          >
+            <span class="mr-2">{{ username }}</span>
+            <v-icon>account_circle</v-icon>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item href="/logout" color="error">
+            <v-list-item-title>Logout</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+    </div>
 
     <v-btn
         v-else
@@ -35,6 +46,7 @@
       <span class="mr-2">Login</span>
       <v-icon>account_circle</v-icon>
     </v-btn>
+
   </v-app-bar>
 </template>
 
@@ -43,17 +55,19 @@ import store from '../store';
 
 export default {
   name: 'Navbar',
+
   props: {
-    loggedIn: false,
   },
+
   data: function () {
     return {
-      loggedIn: false,
-    }
+    };
   },
+
   methods: {
 
   },
+
   mounted() {
 
   },
