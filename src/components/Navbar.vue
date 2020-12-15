@@ -1,7 +1,7 @@
 <template>
   <v-app-bar
       app
-      color="blue lighten-1"
+      color="green lighten-1"
       dark
   >
     <a href="/" class="d-flex align-center text-decoration-none">

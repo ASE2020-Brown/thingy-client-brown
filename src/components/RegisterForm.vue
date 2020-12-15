@@ -48,7 +48,7 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn color="info" @click="submit">Register</v-btn>
+      <v-btn color="success" @click="submit">Register</v-btn>
 
     </v-card-actions>
   </v-card>

@@ -32,7 +32,7 @@
 
       <p class="my-auto mx-3">No account yet? <a href="/register">Register now</a></p>
       <v-spacer></v-spacer>
-      <v-btn color="info" @click="login">Login</v-btn>
+      <v-btn color="success" @click="login">Login</v-btn>
 
     </v-card-actions>
   </v-card>
