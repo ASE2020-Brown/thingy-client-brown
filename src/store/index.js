@@ -47,9 +47,8 @@ export default new Vuex.Store({
             // report success
             console.log('Logged in as ' + loginData.username);
 
-            // save login data
+            // save password
             if (loginData.saveLogin) {
-              localStorage.username = loginData.username;
               localStorage.password = loginData.password;
               console.log('Login information saved');
             }
@@ -71,6 +70,11 @@ export default new Vuex.Store({
                 let username = response.data.username;
                 let thingyId = response.data.sensor;
                 let chatId = response.data.chat_id;
+
+                localStorage.username = username;
+                localStorage.thingyId = thingyId;
+                localStorage.chatId = chatId;
+
                 context.commit('updateUserData', {
                   username,
                   thingyId,

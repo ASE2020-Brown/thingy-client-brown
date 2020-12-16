@@ -35,7 +35,7 @@ export default {
     if (localStorage.token) {
       store.dispatch("user/updateUserData", localStorage.username);
     }
-    else if (localStorage.username) {
+    else if (localStorage.password) {
       store.dispatch('user/login', {
         username: localStorage.username,
         password: localStorage.password,
