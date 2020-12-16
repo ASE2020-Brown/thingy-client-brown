@@ -30,14 +30,16 @@ export default {
   props: {
     sensorId: String
   },
+
   data: function () {
     return {
       connected: false,
       token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidXNlciIsInJvbGUiOiJhZG1pbiIsImp0aSI6IjQzMWI1ZjdjLTY4ZTktNDc4Ny1hYTlmLWRjZWVjOTFkNzhlNiIsImlhdCI6MTYwNjM4MjkyM30.ciguBMplJjaofixJNXB9pEy3XSBaUEHZM6yynZ0rM9s'
     }
   },
+
   methods: {
-    getSensorStatus(sensorId){
+    getSensorStatus(sensorId) {
       axios.get('http://localhost:3000/connected/' + sensorId, {
         headers: {
           'Authorization': 'Bearer ' + this.token 
@@ -54,6 +56,7 @@ export default {
       );
     }
   },
+
   mounted() {
     this.getSensorStatus(this.sensorId);
   },
