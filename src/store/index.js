@@ -16,15 +16,23 @@ export default new Vuex.Store({
       namespaced: true,
 
       state: () => ({
-        loggedIn: false,
         username: '',
+        thingyId: '',
+        chatId: '',
+
+        loggedIn: false,
         failedLogin: false,
       }),
 
       getters: {
-        token: () => {
-          return localStorage.token;
-        }
+        // configuration object containing authentication
+        authConfig: () => {
+          return {
+            headers: {
+              'Authorization': localStorage.token,
+            },
+          };
+        },
       },
 
       actions: {
@@ -33,29 +41,66 @@ export default new Vuex.Store({
                 "username": loginData.username,
                 "password": loginData.password,
               }
-          ).then(response => {
-            localStorage.token = response;
-            context.commit('successfulLogin', loginData.username);
-            console.log('Login successful');
-            console.log(response);
+          )
+              .then(response => {
+
+            // save token
+            localStorage.token = response.data.token;
+
+            // update user data
+            this.updateUserData(loginData.username);
+
+            // report success
+            console.log('Logged in as ' + loginData.username);
+
+            // save login data
             if (loginData.saveLogin) {
               localStorage.username = loginData.username;
               localStorage.password = loginData.password;
               console.log('Login information saved');
             }
+
+            // go to home
             this.router.push('/');
-          }).catch(error => {
+          })
+              .catch(error => {
             context.commit('failedLogin');
             console.log('Login failed');
             console.log(error);
           });
         },
 
-        logout: context => {
-          // TODO: logout
-          localStorage.token = null;
-          context.state.loggedIn = false;
-          context.state.username = '';
+        updateUserData: (context, username) => {
+          axios.get('http://localhost:3000/profile/' + username, this.authConfig())
+              .then((response) => {
+                context.commit('updateUserData');
+              })
+              .catch((error) => {
+                console.log('Failed to update user data');
+                console.log(error);
+              })
+        },
+
+        logout: (context) => {
+          axios.post('http://localhost:3000/logout', this.authConfig())
+              .then((response) => {
+
+                // delete token
+                localStorage.token = null;
+
+                // reset user data
+                context.state.loggedIn = false;
+                context.state.username = '';
+                context.state.thingyId = '';
+                context.state.chatId = '';
+
+                // report success
+                console.log('Logged out');
+              })
+              .catch((error) => {
+                console.log('Faild to logout');
+                console.log(error);
+              })
         },
       },
 
@@ -64,14 +109,24 @@ export default new Vuex.Store({
           state.failedLogin = false;
         },
 
-        successfulLogin(state, username) {
-          state.loggedIn = true;
-          state.username = username;
-          state.failedLogin = false;
-        },
-
         failedLogin(state) {
           state.failedLogin = true;
+        },
+
+        updateUserData(state, username, thingyId, chatId) {
+          state.loggedIn = true;
+          state.failedLogin = false;
+          state.username = username;
+          state.thingyId = thingyId;
+          state.chatId = chatId;
+        },
+
+        resetUserData(state, username, thingyId, chatId) {
+          state.loggedIn = false;
+          state.failedLogin = false;
+          state.username = '';
+          state.thingyId = '';
+          state.chatId = '';
         },
       },
     }

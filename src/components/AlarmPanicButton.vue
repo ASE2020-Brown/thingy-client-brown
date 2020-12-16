@@ -31,9 +31,12 @@
     </v-dialog>
   </v-row>
 </template>
+
 <script>
 import io from 'socket.io-client';
 import axios from 'axios';
+import store from "@/store";
+
 export default {
   data() {
       return {
@@ -46,22 +49,26 @@ export default {
   },
   methods: {
     sendMessage() {
-        this.socket.emit('SEND_MESSAGE', {
-            user: this.user,
-            message: this.message
-        });
-        this.message = ''
+      this.socket.emit('SEND_MESSAGE', {
+        user: this.user,
+        message: this.message
+      });
+      this.message = '';
     },
     sendMessageHelp() {
-        axios.post('http://localhost:3000/helpyou', {
-            "sensor": "brown-3"
-          },
-          {
-            headers: {
-              'Authorization': 'Bearer ' + this.token 
-            }
-          }
-        )
+      let thingyId = store.state.user.thingyId;
+      let config = store.getters.user.authConfig();
+      axios.post('http://localhost:3000/helpyou', {
+        "sensor": thingyId,
+      }, config)
+      .then((response) => {
+        console.log('Sent help message');
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log('Failed to send help message');
+        console.log(error);
+      })
     }
   },
   mounted() {

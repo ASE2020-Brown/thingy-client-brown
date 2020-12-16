@@ -97,14 +97,15 @@ export default {
     register() {
       axios.post('http://localhost:3000/register', {
             "username": this.username,
-            "password": this.password
+            "password": this.password,
           }
-      ).then(response => {
+      ).then((response) => {
         this.connection = true;
-        console.log(response);
+        console.log('Registered ' + this.username);
         this.$router.push('/login');
-      }).catch(error => {
+      }).catch((error) => {
         this.connection = false;
+        console.log('Failed to register');
         console.log(error);
       });
     },
