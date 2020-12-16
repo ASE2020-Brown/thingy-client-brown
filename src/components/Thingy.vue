@@ -14,8 +14,7 @@
       </v-row>
     </v-card-title>
     <v-card-text>
-      <ThingyInfo v-if="connected" :sensor="sensorId"></ThingyInfo>
-      <p v-else class="grey--text">No information</p>
+      <!-- ThingyInfo -->
     </v-card-text>
   </v-card>
 </template>
@@ -23,39 +22,59 @@
 <script>
 import axios from 'axios';
 import ThingyInfo from "@/components/ThingyInfo";
+import store from "@/store";
 
 export default {
   name: 'ThingyStatus',
-  components: {ThingyInfo},
-  props: {
-    sensorId: String
+
+  components: {
+    ThingyInfo,
   },
+
   data: function () {
     return {
       connected: false,
-      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidXNlciIsInJvbGUiOiJhZG1pbiIsImp0aSI6IjQzMWI1ZjdjLTY4ZTktNDc4Ny1hYTlmLWRjZWVjOTFkNzhlNiIsImlhdCI6MTYwNjM4MjkyM30.ciguBMplJjaofixJNXB9pEy3XSBaUEHZM6yynZ0rM9s'
-    }
+      sensorName: '', // usually equal to sensorId
+
+      // temperature
+      value: 0,
+      unit: '',
+      time: '',
+    };
   },
+
+  computed: {
+    sensorId () {
+      return store.state.user.thingyId;
+    },
+
+    config () {
+      return store.computed.user.authConfig();
+    },
+  },
+
   methods: {
-    getSensorStatus(sensorId){
-      axios.get('http://localhost:3000/connected/' + sensorId, {
-        headers: {
-          'Authorization': 'Bearer ' + this.token 
-        }
-      }).then(
-        response => {
-          if(response.data)
-            this.connected = true;
-        }
-      ).catch(
-        error => {
-          console.log(error);
-        }
-      );
-    }
+    readSensorData() {
+      axios.get('http://localhost:3000/temperature/' + this.sensorId,
+          this.authConfig()
+      )
+      .then((response) => {
+        this.sensorName = response.data.sensor;
+        this.value = response.data.value;
+        this.units = response.data.units;
+        this.time = response.data.time;
+
+        this.connected = true;
+        console.log('Updated data from ' + this.sensorId);
+      })
+      .catch((error) => {
+        console.log('Failed to read data');
+        console.log(error);
+      });
+    },
   },
   mounted() {
-    this.getSensorStatus(this.sensorId);
+    this.readSensorData();
   },
 }
 </script>
