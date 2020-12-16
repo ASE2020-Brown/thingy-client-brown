@@ -44,7 +44,7 @@ export default {
     return {
       alarm: false,
       message: 'Alarm',
-      socket : io('localhost:3000'),
+      socket: io('localhost:3000/' + this.thingyId)
     };
   },
 
