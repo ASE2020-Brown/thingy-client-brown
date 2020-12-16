@@ -49,8 +49,9 @@ export default {
       username: '',
       password: '',
       saveLogin: false,
-
       visiblePassword: false,
+
+      tried: false,
     };
   },
 
@@ -60,6 +61,7 @@ export default {
       let password = this.password;
       let saveLogin = this.saveLogin;
       store.dispatch('user/login', { username, password, saveLogin });
+      this.try = true;
     },
   },
 
