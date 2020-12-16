@@ -16,6 +16,7 @@ export default new Vuex.Store({
 
         loggedIn: false,
         failedLogin: false,
+        alarm: false,
       }),
 
       getters: {
@@ -79,8 +80,13 @@ export default new Vuex.Store({
                   username,
                   thingyId,
                   chatId,
-              });
+                });
                 console.log('Received user information');
+
+                this.socket.on('ALARM', (data) => {
+                  context.commit('setAlarm');
+                });
+                console.log('Listening for alert...')
               })
               .catch((error) => {
                 console.log('Failed to update user data');
@@ -139,6 +145,14 @@ export default new Vuex.Store({
           state.username = '';
           state.thingyId = '';
           state.chatId = '';
+        },
+
+        setAlarm(state) {
+          state.alarm = true;
+        },
+
+        unsetAlarm(state) {
+          state.alarm = false;
         },
       },
     },

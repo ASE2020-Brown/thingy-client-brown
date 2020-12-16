@@ -60,6 +60,10 @@ export default {
     authConfig () {
       return store.computed.user.authConfig();
     },
+
+    alarm () {
+      return store.state.user.alarm;
+    }
   },
 
   methods: {
@@ -88,14 +92,8 @@ export default {
     },
 
     closeDialog() {
-      this.alarm = false;
+      store.state.user.alarm = false;
     },
-  },
-
-  mounted() {
-    this.socket.on('ALARM', (data) => {
-      this.alarm = true;
-    });
   },
 };
 </script>

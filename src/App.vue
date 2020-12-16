@@ -3,6 +3,7 @@
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
     <Navbar></Navbar>
 
+    <AlarmPanicButton></AlarmPanicButton>
     <v-main>
       <router-view/>
     </v-main>
@@ -14,6 +15,7 @@
 <script>
 import Navbar from './components/Navbar.vue';
 import Footer from './components/Footer.vue';
+import AlarmPanicButton from "@/components/AlarmPanicButton";
 import store from './store';
 
 export default {
@@ -26,6 +28,7 @@ export default {
   components: {
     Navbar,
     Footer,
+    AlarmPanicButton,
   },
 
   data: () => ({
