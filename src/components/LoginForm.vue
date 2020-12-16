@@ -51,7 +51,7 @@ export default {
       saveLogin: false,
       visiblePassword: false,
 
-      tried: false,
+      try: false,
     };
   },
 
