@@ -9,12 +9,14 @@
         <v-card-title class="headline">
           Panic button
         </v-card-title>
-        <v-card-text>This is an alarm. Panic button was pressed.</v-card-text>
+        <v-card-text>
+          This is an alarm. The panic button on {{ thingyId }} has been pressed.
+        </v-card-text>
         <v-card-actions>
           <v-btn
               color="red"
               text
-              @click="sendMessageHelp(); alarm = false"
+              @click="sendMessageHelp"
           >
             I'm on the way!
           </v-btn>
@@ -40,27 +42,40 @@ import store from "@/store";
 export default {
   data() {
       return {
-          user: 'jairo',
           message: 'Alarma',
           alarm: false,
           socket : io('localhost:3000'),
-          token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidXNlciIsInJvbGUiOiJhZG1pbiIsImp0aSI6IjQzMWI1ZjdjLTY4ZTktNDc4Ny1hYTlmLWRjZWVjOTFkNzhlNiIsImlhdCI6MTYwNjM4MjkyM30.ciguBMplJjaofixJNXB9pEy3XSBaUEHZM6yynZ0rM9s'
-      }
+      };
   },
+
+  computed: {
+    username () {
+      return store.state.user.username;
+    },
+
+    thingyId () {
+      return store.state.user.thingyId;
+    },
+
+    authConfig () {
+      return store.computed.user.authConfig();
+    }
+  },
+
   methods: {
     sendMessage() {
       this.socket.emit('SEND_MESSAGE', {
-        user: this.user,
+        user: this.username,
         message: this.message
       });
       this.message = '';
     },
+
+    // help is on the way
     sendMessageHelp() {
-      let thingyId = store.state.user.thingyId;
-      let config = store.getters.user.authConfig();
       axios.post('http://localhost:3000/helpyou', {
-        "sensor": thingyId,
-      }, config)
+        "sensor": this.thingyId,
+      }, this.authConfig)
       .then((response) => {
         console.log('Sent help message');
         console.log(response.data);
@@ -68,9 +83,12 @@ export default {
       .catch((error) => {
         console.log('Failed to send help message');
         console.log(error);
-      })
+      });
+
+      this.alarm = false;
     }
   },
+
   mounted() {
       this.socket.on('ALARM', (data) => {
           this.alarm = true;

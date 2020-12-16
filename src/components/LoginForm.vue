@@ -74,6 +74,12 @@ export default {
 
   mounted() {
     store.commit('user/startLogin');
+
+    // import login data if saved
+    if (localStorage.username !== null) {
+      this.username = localStorage.username;
+      this.password = localStorage.password;
+    }
   },
-}
+};
 </script>

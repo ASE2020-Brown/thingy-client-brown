@@ -56,19 +56,21 @@
 
 <script>
 import axios from 'axios';
+
 export default {
   name: 'RegisterForm',
-  props: {
 
+  props: {
   },
+
   data: function () {
     return {
       connection: true,
       visiblePassword: false,
 
-      username: null,
-      password: null,
-      passwordRepeat: null,
+      username: '',
+      password: '',
+      passwordRepeat: '',
 
       submittedEmpty: false,
       passwordsAreEqual: true,
@@ -85,7 +87,7 @@ export default {
     },
 
     checkName() {
-      this.submittedEmpty = (this.username === null || this.username === "");
+      this.submittedEmpty = (this.username === '' || this.username === '');
       return (!this.submittedEmpty);
     },
 
@@ -110,8 +112,8 @@ export default {
       });
     },
   },
-  mounted() {
 
+  mounted() {
   },
-}
+};
 </script>

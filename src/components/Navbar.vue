@@ -76,6 +76,10 @@ export default {
     loggedIn: () => {
       return store.state.user.loggedIn;
     },
+
+    username: () => {
+      return store.state.user.username;
+    },
   },
 }
 </script>
