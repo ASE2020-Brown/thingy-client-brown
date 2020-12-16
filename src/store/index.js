@@ -43,13 +43,13 @@ export default new Vuex.Store({
                 "password": loginData.password,
               }
           )
-              .then(response => {
+          .then(response => {
 
             // save token
             localStorage.token = response.data.token;
 
             // update user data
-            context.commit('updateUserData', loginData.username);
+            context.dispatch('updateUserData', loginData.username).then(r => {});
 
             // report success
             console.log('Logged in as ' + loginData.username);
@@ -60,11 +60,8 @@ export default new Vuex.Store({
               localStorage.password = loginData.password;
               console.log('Login information saved');
             }
-
-            // go to home
-            router.push('/');
           })
-              .catch(error => {
+          .catch(error => {
             context.commit('failedLogin');
             console.log('Login failed');
             console.log(error);
@@ -78,12 +75,20 @@ export default new Vuex.Store({
             },
           })
               .then((response) => {
-                context.commit('updateUserData');
+                let username = response.data.username;
+                let thingyId = response.data.sensor;
+                let chatId = response.data.chat_id;
+                context.commit('updateUserData', {
+                  username,
+                  thingyId,
+                  chatId,
+              });
+                console.log('Received user information');
               })
               .catch((error) => {
                 console.log('Failed to update user data');
                 console.log(error);
-              })
+              });
         },
 
         logout: (context) => {
@@ -123,12 +128,12 @@ export default new Vuex.Store({
           state.failedLogin = true;
         },
 
-        updateUserData(state, username, thingyId, chatId) {
+        updateUserData(state, userInfo) {
           state.loggedIn = true;
           state.failedLogin = false;
-          state.username = username;
-          state.thingyId = thingyId;
-          state.chatId = chatId;
+          state.username = userInfo.username;
+          state.thingyId = userInfo.thingyId;
+          state.chatId = userInfo.chatId;
         },
 
         resetUserData(state, username, thingyId, chatId) {
@@ -141,4 +146,4 @@ export default new Vuex.Store({
       },
     }
   }
-})
+});

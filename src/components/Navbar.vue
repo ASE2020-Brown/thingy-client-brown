@@ -31,8 +31,8 @@
           </v-btn>
         </template>
         <v-list>
-          <v-list-item href="/logout" color="error">
-            <v-list-item-title>Logout</v-list-item-title>
+          <v-list-item href="/user" color="info">
+            <v-list-item-title>Settings</v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>
