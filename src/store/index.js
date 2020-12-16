@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from "axios";
+import io from "socket.io-client";
 
 Vue.use(Vuex);
 
@@ -22,6 +23,10 @@ export default new Vuex.Store({
 
           thingyId: () => {
               return localStorage.thingyId;
+          },
+
+          socket: () => {
+              return io('localhost:3000/' + this.thingyId)
           },
 
           chatId: () => {
@@ -91,7 +96,7 @@ export default new Vuex.Store({
                 });
                 console.log('Received user information');
 
-                socket.on('ALARM', (data) => {
+                  io('localhost:3000/' + context.thingyId).on('ALARM', (data) => {
                   context.commit('setAlarm');
                 });
                 console.log('Listening for alert...')

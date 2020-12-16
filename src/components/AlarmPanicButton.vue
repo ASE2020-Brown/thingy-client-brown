@@ -43,7 +43,7 @@ export default {
   data() {
     return {
       message: 'Alarm',
-      socket: io('localhost:3000/' + localStorage.thingyId),
+      socket: io('localhost:3000/' + this.thingyId),
     };
   },
 

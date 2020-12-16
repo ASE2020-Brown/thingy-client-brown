@@ -1,7 +1,6 @@
 <template>
   <div class="home">
     <Thingy></Thingy>
-    <AlarmPanicButton></AlarmPanicButton>
   </div>
 </template>
 
