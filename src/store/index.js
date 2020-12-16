@@ -30,7 +30,7 @@ export default new Vuex.Store({
         authConfig: () => {
           return {
             headers: {
-              'Authorization': localStorage.token,
+              'Authorization': `Bearer ${localStorage.token}`,
             },
           };
         },
