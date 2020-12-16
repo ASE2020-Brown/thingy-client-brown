@@ -26,7 +26,7 @@ export default new Vuex.Store({
           },
 
           socket: () => {
-              return io('localhost:3000/' + this.thingyId)
+              return io('localhost:3000/' + localStorage.thingyId);
           },
 
           chatId: () => {
