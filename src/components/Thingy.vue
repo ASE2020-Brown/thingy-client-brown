@@ -49,14 +49,14 @@ export default {
     },
 
     config () {
-      return store.computed.user.authConfig();
+      return store.getters["user/authConfig"];
     },
   },
 
   methods: {
     readSensorData() {
       axios.get('http://localhost:3000/temperature/' + this.sensorId,
-          this.authConfig()
+          this.config
       )
       .then((response) => {
         this.sensorName = response.data.sensor;

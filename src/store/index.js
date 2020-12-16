@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from "axios";
+import router from "@/router";
 
 Vue.use(Vuex)
 
@@ -48,7 +49,7 @@ export default new Vuex.Store({
             localStorage.token = response.data.token;
 
             // update user data
-            this.updateUserData(loginData.username);
+            context.commit('updateUserData', loginData.username);
 
             // report success
             console.log('Logged in as ' + loginData.username);
@@ -61,7 +62,7 @@ export default new Vuex.Store({
             }
 
             // go to home
-            this.router.push('/');
+            router.push('/');
           })
               .catch(error => {
             context.commit('failedLogin');
