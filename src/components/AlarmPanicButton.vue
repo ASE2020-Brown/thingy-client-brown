@@ -73,7 +73,7 @@ export default {
 
     // help is on the way
     sendMessageHelp() {
-      axios.post('http://localhost:3000/helpyou', {
+      axios.post('http://localhost:3000/helpyou' + this.thingyId, {
         "sensor": this.thingyId,
       }, this.authConfig)
       .then((response) => {

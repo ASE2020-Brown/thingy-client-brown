@@ -5,7 +5,11 @@
     </v-card-title>
     <v-card-text>
       <p>Thingy ID: {{ thingyId }}</p>
-      <p>Subscribe in Telegram: {{ chatId }}</p>
+      <v-row>
+        <p>Subscribe in Telegram: {{ chatId }}</p>
+        <v-spacer></v-spacer>
+        <v-btn @click="invite">Invite</v-btn>
+      </v-row>
     </v-card-text>
     <v-card-actions>
       <v-btn color="error" @click="logout">Logout</v-btn>

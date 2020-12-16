@@ -32,7 +32,10 @@ export default {
   }),
 
   mounted() {
-    if (localStorage.username !== null) {
+    if (localStorage.token) {
+      store.dispatch("user/updateUserData", localStorage.username);
+    }
+    else if (localStorage.username) {
       store.dispatch('user/login', {
         username: localStorage.username,
         password: localStorage.password,
