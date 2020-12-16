@@ -7,7 +7,7 @@ import axios from 'axios';
 
 
 export default {
-  name: 'CurrentTemperature',
+  name: 'ThingyInfo',
   props: {
     sensor: String,
   },

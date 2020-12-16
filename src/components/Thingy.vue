@@ -14,7 +14,7 @@
       </v-row>
     </v-card-title>
     <v-card-text>
-      <CurrentTemperature v-if="connected" :sensor="sensorId"></CurrentTemperature>
+      <ThingyInfo v-if="connected" :sensor="sensorId"></ThingyInfo>
       <p v-else class="grey--text">No information</p>
     </v-card-text>
   </v-card>
@@ -22,10 +22,10 @@
 
 <script>
 import axios from 'axios';
-import CurrentTemperature from "@/components/ThingyInfo";
+import ThingyInfo from "@/components/ThingyInfo";
 export default {
   name: 'ThingyStatus',
-  components: {CurrentTemperature},
+  components: {ThingyInfo},
   props: {
     sensorId: String
   },
