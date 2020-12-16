@@ -91,7 +91,7 @@ export default {
     },
 
     comparePasswords() {
-      this.passwordsAreEqual = (this.password === this.passwordRepeat)
+      this.passwordsAreEqual = (this.password === this.passwordRepeat);
       return this.passwordsAreEqual;
     },
 
@@ -99,8 +99,7 @@ export default {
       axios.post('http://localhost:3000/register', {
             "username": this.username,
             "password": this.password,
-          }
-      ).then((response) => {
+      }).then((response) => {
         this.connection = true;
         console.log('Registered ' + this.username);
         this.$router.push('/login');
