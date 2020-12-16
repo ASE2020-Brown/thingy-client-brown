@@ -10,16 +10,24 @@ export default new Vuex.Store({
       namespaced: true,
 
       state: () => ({
-        username: '',
-        thingyId: '',
-        chatId: '',
-
         loggedIn: false,
         failedLogin: false,
         alarm: false,
       }),
 
       getters: {
+          username: () => {
+              return localStorage.username;
+          },
+
+          thingyId: () => {
+              return localStorage.thingyId;
+          },
+
+          chatId: () => {
+              return localStorage.chatId;
+          },
+
         // configuration object containing authentication
         authConfig: () => {
           return {
@@ -83,7 +91,7 @@ export default new Vuex.Store({
                 });
                 console.log('Received user information');
 
-                this.socket.on('ALARM', (data) => {
+                socket.on('ALARM', (data) => {
                   context.commit('setAlarm');
                 });
                 console.log('Listening for alert...')
@@ -107,9 +115,8 @@ export default new Vuex.Store({
 
                 // reset user data
                 context.state.loggedIn = false;
-                context.state.username = '';
-                context.state.thingyId = '';
-                context.state.chatId = '';
+                localStorage.thingyId = '';
+                localStorage.chatId = '';
 
                 // report success
                 console.log('Logged out');
@@ -134,17 +141,9 @@ export default new Vuex.Store({
         updateUserData(state, userInfo) {
           state.loggedIn = true;
           state.failedLogin = false;
-          state.username = userInfo.username;
-          state.thingyId = userInfo.thingyId;
-          state.chatId = userInfo.chatId;
-        },
-
-        resetUserData(state) {
-          state.loggedIn = false;
-          state.failedLogin = false;
-          state.username = '';
-          state.thingyId = '';
-          state.chatId = '';
+          localStorage.username = userInfo.username;
+          localStorage.thingyId = userInfo.thingyId;
+          localStorage.chatId = userInfo.chatId;
         },
 
         setAlarm(state) {

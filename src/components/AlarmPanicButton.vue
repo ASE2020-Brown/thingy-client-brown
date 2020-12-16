@@ -42,9 +42,8 @@ import store from "@/store";
 export default {
   data() {
     return {
-      alarm: false,
       message: 'Alarm',
-      socket: io('localhost:3000/' + this.thingyId)
+      socket: io('localhost:3000/' + localStorage.thingyId),
     };
   },
 
@@ -63,7 +62,7 @@ export default {
 
     alarm () {
       return store.state.user.alarm;
-    }
+    },
   },
 
   methods: {
