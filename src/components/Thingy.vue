@@ -29,7 +29,7 @@ import ThingyInfo from "@/components/ThingyInfo";
 import store from "@/store";
 
 export default {
-  name: 'ThingyStatus',
+  name: 'Thingy',
 
   components: {
     ThingyInfo,
