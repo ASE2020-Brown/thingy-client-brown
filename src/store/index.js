@@ -109,7 +109,8 @@ export default new Vuex.Store({
               .catch((error) => {
                 console.log('Faild to logout');
                 console.log(error);
-              })
+              });
+          localStorage.clear();
         },
       },
 
