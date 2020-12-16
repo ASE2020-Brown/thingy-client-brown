@@ -60,9 +60,6 @@ import axios from 'axios';
 export default {
   name: 'RegisterForm',
 
-  props: {
-  },
-
   data: function () {
     return {
       connection: true,
@@ -76,10 +73,12 @@ export default {
       passwordsAreEqual: true,
     };
   },
+
   methods: {
     submit() {
-      if (this.check())
+      if (this.check()) {
         this.register();
+      }
     },
 
     check() {
@@ -111,9 +110,6 @@ export default {
         console.log(error);
       });
     },
-  },
-
-  mounted() {
   },
 };
 </script>

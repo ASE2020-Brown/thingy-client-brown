@@ -24,5 +24,5 @@ export default {
       return store.state.user.loggedIn;
     },
   },
-}
+};
 </script>

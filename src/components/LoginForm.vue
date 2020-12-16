@@ -44,9 +44,6 @@ import store from '../store';
 export default {
   name: 'LoginForm',
 
-  props: {
-  },
-
   data: function () {
     return {
       username: '',
@@ -54,7 +51,7 @@ export default {
       saveLogin: false,
 
       visiblePassword: false,
-    }
+    };
   },
 
   methods: {
@@ -69,7 +66,7 @@ export default {
   computed: {
     fail: () => {
       return store.state.user.failedLogin;
-    }
+    },
   },
 
   mounted() {

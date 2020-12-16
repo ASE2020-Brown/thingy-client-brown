@@ -41,11 +41,11 @@ import store from "@/store";
 
 export default {
   data() {
-      return {
-          message: 'Alarma',
-          alarm: false,
-          socket : io('localhost:3000'),
-      };
+    return {
+      alarm: false,
+      message: 'Alarm',
+      socket : io('localhost:3000'),
+    };
   },
 
   computed: {
@@ -59,7 +59,7 @@ export default {
 
     authConfig () {
       return store.computed.user.authConfig();
-    }
+    },
   },
 
   methods: {
@@ -90,9 +90,9 @@ export default {
   },
 
   mounted() {
-      this.socket.on('ALARM', (data) => {
-          this.alarm = true;
-      });
-  }
-}
+    this.socket.on('ALARM', (data) => {
+      this.alarm = true;
+    });
+  },
+};
 </script>

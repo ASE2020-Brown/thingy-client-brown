@@ -56,22 +56,6 @@ import store from '../store';
 export default {
   name: 'Navbar',
 
-  props: {
-  },
-
-  data: function () {
-    return {
-    };
-  },
-
-  methods: {
-
-  },
-
-  mounted() {
-
-  },
-
   computed: {
     loggedIn: () => {
       return store.state.user.loggedIn;
@@ -81,5 +65,5 @@ export default {
       return store.state.user.username;
     },
   },
-}
+};
 </script>

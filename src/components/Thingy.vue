@@ -23,6 +23,7 @@
 <script>
 import axios from 'axios';
 import ThingyInfo from "@/components/ThingyInfo";
+
 export default {
   name: 'ThingyStatus',
   components: {ThingyInfo},
