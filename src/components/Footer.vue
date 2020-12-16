@@ -14,15 +14,5 @@ import store from '../store';
 
 export default {
   name: 'Footer',
-
-  computed: {
-    loggedIn: () => {
-      return store.state.user.loggedIn;
-    },
-
-    username: () => {
-      return store.state.user.username;
-    },
-  },
 };
 </script>

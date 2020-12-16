@@ -29,15 +29,15 @@ export default {
     },
 
     username () {
-      return store.state.user.username;
+      return localStorage.username;
     },
 
     thingyId () {
-      return store.state.user.thingyId;
+      return localStorage.thingyId;
     },
 
     chatId () {
-      return store.state.user.chatId;
+      return localStorage.chatId;
     },
   },
 

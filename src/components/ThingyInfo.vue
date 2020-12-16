@@ -39,6 +39,7 @@ export default {
       );
     },
   },
+
   mounted() {
     this.getCurrentTemperature(this.sensor);
   },

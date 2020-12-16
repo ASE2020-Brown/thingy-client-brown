@@ -49,7 +49,7 @@ export default {
 
   computed: {
     sensorId () {
-      return store.state.user.thingyId;
+      return localStorage.thingyId;
     },
 
     config () {

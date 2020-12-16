@@ -49,11 +49,11 @@ export default {
 
   computed: {
     username () {
-      return store.state.user.username;
+      return localStorage.username;
     },
 
     thingyId () {
-      return store.state.user.thingyId;
+      return localStorage.thingyId;
     },
 
     authConfig () {
