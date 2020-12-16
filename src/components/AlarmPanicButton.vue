@@ -24,7 +24,7 @@
           <v-btn
             color="green darken-1"
             text
-            @click="alarm = false"
+            @click="closeDialog"
           >
             Close
           </v-btn>
@@ -79,14 +79,17 @@ export default {
       .then((response) => {
         console.log('Sent help message');
         console.log(response.data);
+        this.closeDialog();
       })
       .catch((error) => {
         console.log('Failed to send help message');
         console.log(error);
       });
+    },
 
+    closeDialog() {
       this.alarm = false;
-    }
+    },
   },
 
   mounted() {
