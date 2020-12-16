@@ -14,6 +14,7 @@
 <script>
 import Navbar from './components/Navbar.vue';
 import Footer from './components/Footer.vue';
+import store from './store';
 
 export default {
   name: 'App',
@@ -29,5 +30,15 @@ export default {
 
   data: () => ({
   }),
+
+  mounted() {
+    if (localStorage.username !== null) {
+      store.dispatch('user/login', {
+        username: localStorage.username,
+        password: localStorage.password,
+        saveLogin: true,
+      });
+    }
+  },
 };
 </script>

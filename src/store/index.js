@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import axios from "axios";
 import router from "@/router";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
@@ -72,7 +72,11 @@ export default new Vuex.Store({
         },
 
         updateUserData: (context, username) => {
-          axios.get('http://localhost:3000/profile/' + username, this.authConfig())
+          axios.get('http://localhost:3000/profile/' + username, {
+            headers: {
+              'Authorization': `Bearer ${localStorage.token}`,
+            },
+          })
               .then((response) => {
                 context.commit('updateUserData');
               })
@@ -83,7 +87,11 @@ export default new Vuex.Store({
         },
 
         logout: (context) => {
-          axios.post('http://localhost:3000/logout', this.authConfig())
+          axios.post('http://localhost:3000/logout', {
+            headers: {
+              'Authorization': `Bearer ${localStorage.token}`,
+            },
+          })
               .then((response) => {
 
                 // delete token
