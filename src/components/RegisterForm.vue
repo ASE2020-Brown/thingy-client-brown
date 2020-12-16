@@ -20,6 +20,12 @@
           Username required!
         </v-alert>
         <v-text-field
+            type="text"
+            label="Thingy"
+            v-model="thingyId"
+            prepend-inner-icon="mdi-star-box">
+        </v-text-field>
+        <v-text-field
             :type="visiblePassword ? 'text' : 'password'"
             label="Password"
             v-model="password"
@@ -66,6 +72,7 @@ export default {
       visiblePassword: false,
 
       username: '',
+      thingyId: '',
       password: '',
       passwordRepeat: '',
 
@@ -97,8 +104,9 @@ export default {
 
     register() {
       axios.post('http://localhost:3000/register', {
-            "username": this.username,
-            "password": this.password,
+        "username": this.username,
+        "password": this.password,
+        "sensor": this.thingyId,
       }).then((response) => {
         this.connection = true;
         console.log('Registered ' + this.username);
