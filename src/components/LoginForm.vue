@@ -6,7 +6,7 @@
     <v-card-text>
 
       <v-form>
-        <v-alert v-if="fail" type="error">
+        <v-alert v-if="tried && failed" type="error">
           Login failed: Wrong username or password!
         </v-alert>
         <v-text-field
@@ -51,8 +51,14 @@ export default {
       saveLogin: false,
       visiblePassword: false,
 
-      try: false,
+      tried: false,
     };
+  },
+
+  computed: {
+    failed: () => {
+      return store.state.user.failedLogin;
+    },
   },
 
   methods: {
@@ -62,12 +68,6 @@ export default {
       let saveLogin = this.saveLogin;
       store.dispatch('user/login', { username, password, saveLogin });
       this.try = true;
-    },
-  },
-
-  computed: {
-    fail: () => {
-      return store.state.user.failedLogin;
     },
   },
 
