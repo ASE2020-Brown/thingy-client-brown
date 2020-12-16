@@ -92,7 +92,7 @@ export default new Vuex.Store({
         },
 
         logout: (context) => {
-          axios.post('http://localhost:3000/logout', {
+          axios.post('http://localhost:3000/logout', {}, {
             headers: {
               'Authorization': `Bearer ${localStorage.token}`,
             },
@@ -112,7 +112,7 @@ export default new Vuex.Store({
                 console.log('Logged out');
               })
               .catch((error) => {
-                console.log('Faild to logout');
+                console.log('Failed to logout');
                 console.log(error);
               });
           localStorage.clear();
@@ -136,7 +136,7 @@ export default new Vuex.Store({
           state.chatId = userInfo.chatId;
         },
 
-        resetUserData(state, username, thingyId, chatId) {
+        resetUserData(state) {
           state.loggedIn = false;
           state.failedLogin = false;
           state.username = '';
@@ -144,6 +144,6 @@ export default new Vuex.Store({
           state.chatId = '';
         },
       },
-    }
-  }
+    },
+  },
 });

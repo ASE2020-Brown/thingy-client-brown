@@ -11,6 +11,10 @@
           ></v-icon>
           <span class="white--text"><span v-if="!connected">not </span>connected</span>
         </p>
+        <v-spacer></v-spacer>
+        <v-btn @click="readSensorData">
+          <v-icon>mdi-refresh</v-icon>
+        </v-btn>
       </v-row>
     </v-card-title>
     <v-card-text>
@@ -25,7 +29,7 @@ import ThingyInfo from "@/components/ThingyInfo";
 import store from "@/store";
 
 export default {
-  name: 'ThingyStatus',
+  name: 'Thingy',
 
   components: {
     ThingyInfo,
