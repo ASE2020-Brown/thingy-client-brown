@@ -1,5 +1,5 @@
 <template>
-  <v-footer
+  <v-footer class="mt-3"
       height="100px"
       color="green lighten-1"
       dark

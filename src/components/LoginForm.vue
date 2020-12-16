@@ -67,7 +67,7 @@ export default {
       let password = this.password;
       let saveLogin = this.saveLogin;
       store.dispatch('user/login', { username, password, saveLogin });
-      this.try = true;
+      this.tried = true;
     },
   },
 

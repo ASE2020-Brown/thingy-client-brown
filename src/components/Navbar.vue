@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar
+  <v-app-bar class="mb-3"
       app
       color="green lighten-1"
       dark
