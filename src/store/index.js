@@ -96,10 +96,10 @@ export default new Vuex.Store({
                 });
                 console.log('Received user information');
 
-                  io('localhost:3000/' + context.thingyId).on('ALARM', (data) => {
+                io('localhost:3000/' + context.thingyId).on('ALARM', (data) => {
                   context.commit('setAlarm');
                 });
-                console.log('Listening for alert...')
+                console.log('Listening for alert...');
               })
               .catch((error) => {
                 console.log('Failed to update user data');
