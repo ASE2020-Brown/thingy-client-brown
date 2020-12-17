@@ -19,35 +19,47 @@
     </v-card-title>
     <v-card-text>
       <v-simple-table>
-        <template v-slot:default>
-          <tbody>
-            <tr>
-              <td>Sensor name:</td>
-              <td>{{ sensorId }}</td>
-            </tr>
-            <tr>
-              <td>Temperature:</td>
-              <td>{{ value }} {{ units }}</td>
-            </tr>
-            <tr>
-              <td>Last measurement:</td>
-              <td>{{ time }}</td>
-            </tr>
-          </tbody>
-        </template>
+        <tbody>
+        <tr>
+          <td>Sensor name:</td>
+          <td>{{ sensorId }}</td>
+        </tr>
+        <tr>
+          <td>Temperature:</td>
+          <td>{{ value }} {{ units }}</td>
+        </tr>
+        <tr>
+          <td>Last measurement:</td>
+          <td>{{ time }}</td>
+        </tr>
+        </tbody>
       </v-simple-table>
     </v-card-text>
+    <v-card-actions>
+      <v-expansion-panels>
+        <v-expansion-panel>
+          <v-expansion-panel-header>
+            See log
+          </v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <DataLog></DataLog>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
+    </v-card-actions>
   </v-card>
 </template>
 
 <script>
 import axios from 'axios';
 import store from "@/store";
+import DataLog from "@/components/DataLog";
 
 export default {
   name: 'Thingy',
 
   components: {
+    DataLog
   },
 
   data: function () {
@@ -92,6 +104,7 @@ export default {
       });
     },
   },
+
   mounted() {
     this.readSensorData();
   },
