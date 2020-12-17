@@ -83,6 +83,7 @@
       </v-simple-table>
     </v-card-text>
     <v-card-actions>
+      <v-btn color="error" @click="deleteAccount">Delete account</v-btn>
       <v-btn color="error" @click="logout">Logout</v-btn>
     </v-card-actions>
   </v-card>
@@ -127,6 +128,11 @@ export default {
   methods: {
     logout() {
       store.dispatch('user/logout');
+      this.$router.push('/login');
+    },
+
+    deleteAccount() {
+      store.dispatch('user/deleteAccount');
       this.$router.push('/login');
     },
 

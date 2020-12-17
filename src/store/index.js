@@ -132,6 +132,21 @@ export default new Vuex.Store({
               });
           localStorage.clear();
         },
+
+          deleteAccount: (context) => {
+            axios.post('http://localhost:3000/user/delete', {}, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.token}`,
+                },
+            })
+            .then((response) => {
+                console.log('Deleted account');
+            })
+            .catch((error) => {
+                console.log('Failed to delete account');
+                console.log(error);
+            })
+          }
       },
 
       mutations: {
