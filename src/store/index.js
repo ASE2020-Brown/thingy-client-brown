@@ -56,7 +56,7 @@ export default new Vuex.Store({
             localStorage.token = response.data.token;
 
             // update user data
-            context.dispatch('updateUserData', loginData.username).then(r => {});
+            context.dispatch('updateUserData', loginData.username);
 
             // report success
             console.log('Logged in as ' + loginData.username);
