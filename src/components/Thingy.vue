@@ -18,7 +18,24 @@
       </v-row>
     </v-card-title>
     <v-card-text>
-      <!-- ThingyInfo -->
+      <v-simple-table>
+        <template v-slot:default>
+          <tbody>
+            <tr>
+              <td>Sensor name:</td>
+              <td>{{ sensorId }}</td>
+            </tr>
+            <tr>
+              <td>Temperature:</td>
+              <td>{{ value }} {{ units }}</td>
+            </tr>
+            <tr>
+              <td>Last measurement:</td>
+              <td>{{ time }}</td>
+            </tr>
+          </tbody>
+        </template>
+      </v-simple-table>
     </v-card-text>
   </v-card>
 </template>
@@ -40,7 +57,7 @@ export default {
 
       // temperature
       value: 0,
-      unit: '',
+      units: '°C',
       time: '',
     };
   },
