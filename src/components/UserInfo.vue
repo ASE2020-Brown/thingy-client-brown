@@ -4,65 +4,83 @@
       <h1>Logged in as {{ username }}</h1>
     </v-card-title>
     <v-card-text>
-      <p>Thingy ID: {{ thingyId }}</p>
-      <v-row class="text-center">
-        <p>Subscribe in Telegram: {{ chatId }}</p>
-        <v-spacer></v-spacer>
-        <div class="text-center">
-          <v-dialog
-              v-model="inviting"
-              width="500"
-          >
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                  color="blue lighten-2"
-                  dark
-                  v-bind="attrs"
-                  v-on="on"
-              >
-                <v-icon>mdi-telegram</v-icon>
-                <span class="mr-2">invite</span>
-              </v-btn>
-            </template>
+      <v-simple-table>
+        <template v-slot:default>
+          <tbody>
+            <tr>
+              <td>Username:</td>
+              <td>{{ username }}</td>
+            </tr>
+            <tr>
+              <td>Thingy ID:</td>
+              <td>{{ thingyId }}</td>
+            </tr>
+            <tr>
+              <td>Telegram ID:</td>
+              <td>
+                {{ chatId }}
 
-            <v-card>
-              <v-card-title class="headline grey lighten-2">
-                Send email invitation for telegram
-              </v-card-title>
+                <!-- invite button -->
+                <span class="text-center ml-5">
+                  <v-dialog
+                      v-model="inviting"
+                      width="500"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-btn
+                          color="blue lighten-2"
+                          dark
+                          v-bind="attrs"
+                          v-on="on"
+                      >
+                        <v-icon>mdi-telegram</v-icon>
+                        <span class="mr-2">invite</span>
+                      </v-btn>
+                    </template>
 
-              <v-card-text>
-                <v-text-field
-                    type="text"
-                    label="Email"
-                    v-model="email"
-                    prepend-inner-icon="mdi-email"
-                >
-                </v-text-field>
-              </v-card-text>
+                    <v-card>
+                      <v-card-title class="headline grey lighten-2">
+                        Send email invitation for telegram
+                      </v-card-title>
 
-              <v-divider></v-divider>
+                      <v-card-text>
+                        <v-text-field
+                            type="text"
+                            label="Email"
+                            v-model="email"
+                            prepend-inner-icon="mdi-email"
+                        >
+                        </v-text-field>
+                      </v-card-text>
 
-              <v-card-actions>
-                <v-btn
-                    color="primary"
-                    text
-                    @click="closeDialog"
-                >
-                  Cancel
-                </v-btn>
-                <v-spacer></v-spacer>
-                <v-btn
-                    color="blue"
-                    text
-                    @click="invite"
-                >
-                  Send
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
-        </div>
-      </v-row>
+                      <v-divider></v-divider>
+
+                      <v-card-actions>
+                        <v-btn
+                            color="primary"
+                            text
+                            @click="closeDialog"
+                        >
+                          Cancel
+                        </v-btn>
+                        <v-spacer></v-spacer>
+                        <v-btn
+                            color="blue"
+                            text
+                            @click="invite"
+                        >
+                          Send
+                        </v-btn>
+                      </v-card-actions>
+                    </v-card>
+                  </v-dialog>
+                </span>
+
+              </td>
+            </tr>
+          </tbody>
+        </template>
+      </v-simple-table>
     </v-card-text>
     <v-card-actions>
       <v-btn color="error" @click="logout">Logout</v-btn>

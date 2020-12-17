@@ -25,14 +25,12 @@
 
 <script>
 import axios from 'axios';
-import ThingyInfo from "@/components/ThingyInfo";
 import store from "@/store";
 
 export default {
   name: 'Thingy',
 
   components: {
-    ThingyInfo,
   },
 
   data: function () {

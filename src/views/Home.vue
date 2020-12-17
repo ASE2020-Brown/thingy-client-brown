@@ -6,7 +6,6 @@
 
 <script>
 // @ is an alias to /src
-import ThingyInfo from '@/components/ThingyInfo.vue';
 import Thingy from '@/components/Thingy.vue';
 
 export default {
@@ -18,7 +17,6 @@ export default {
   },
 
   components: {
-    ThingyInfo,
     Thingy,
   },
 };
