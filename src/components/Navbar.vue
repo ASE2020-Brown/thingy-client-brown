@@ -32,7 +32,9 @@
         </template>
         <v-list>
           <v-list-item href="/user" color="info">
-            <v-list-item-title>Settings</v-list-item-title>
+            <v-list-item-title>
+              <v-icon>mdi-information-variant</v-icon>
+            </v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>
