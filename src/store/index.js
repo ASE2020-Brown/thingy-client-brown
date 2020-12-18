@@ -1,5 +1,5 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
 import axios from "axios";
 import io from "socket.io-client";
 
@@ -134,13 +134,25 @@ export default new Vuex.Store({
         },
 
           deleteAccount: (context) => {
-            axios.post('http://localhost:3000/user/delete', {}, {
+            let username = context.getters.username;
+            axios.post('http://localhost:3000/user/delete', {
+                username,
+            }, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.token}`,
                 },
             })
             .then((response) => {
-                console.log('Deleted account');
+                // delete token
+                localStorage.token = null;
+
+                // reset user data
+                context.state.loggedIn = false;
+                localStorage.thingyId = '';
+                localStorage.chatId = '';
+
+                // report success
+                console.log('Logged out');
             })
             .catch((error) => {
                 console.log('Failed to delete account');
