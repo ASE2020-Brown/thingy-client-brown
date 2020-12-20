@@ -5,6 +5,7 @@
     </v-card-title>
     <v-card-text>
 
+      <!-- Form -->
       <v-form>
         <v-alert v-if="tried && failed" type="error">
           Login failed: Wrong username or password!
@@ -13,8 +14,8 @@
             type="text"
             label="Email"
             v-model="username"
-            prepend-inner-icon="mdi-account-circle">
-        </v-text-field>
+            prepend-inner-icon="mdi-account-circle"
+        ></v-text-field>
         <v-text-field
             :type="visiblePassword ? 'text' : 'password'"
             label="Password"
@@ -23,13 +24,17 @@
             :append-icon="visiblePassword ? 'mdi-eye' : 'mdi-eye-off'"
             @click:append="visiblePassword = !visiblePassword"
         ></v-text-field>
-        <v-checkbox v-model="saveLogin" :label="`Save Login Information`"></v-checkbox>
+        <v-checkbox
+            v-model="saveLogin"
+            :label="`Save Login Information`"
+        ></v-checkbox>
       </v-form>
 
     </v-card-text>
     <v-divider></v-divider>
     <v-card-actions>
 
+      <!-- Buttons -->
       <p class="my-auto mx-3">No account yet? <a href="/register">Register now</a></p>
       <v-spacer></v-spacer>
       <v-btn color="success" @click="login">Login</v-btn>
@@ -39,12 +44,13 @@
 </template>
 
 <script>
-import store from '../store';
+// @ is an alias to /src
+import store from '@/store';
 
 export default {
   name: 'LoginForm',
 
-  data: function () {
+  data() {
     return {
       username: '',
       password: '',
@@ -56,7 +62,7 @@ export default {
   },
 
   computed: {
-    failed: () => {
+    failed() {
       return store.state.user.failedLogin;
     },
   },
@@ -74,7 +80,7 @@ export default {
   mounted() {
     store.commit('user/startLogin');
 
-    // import login data if saved
+    // import login data if available
     if (localStorage.username !== null) {
       this.username = localStorage.username;
       this.password = localStorage.password;

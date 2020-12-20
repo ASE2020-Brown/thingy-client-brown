@@ -1,9 +1,5 @@
 <template>
-  <v-app-bar class="mb-3"
-      app
-      color="green lighten-1"
-      dark
-  >
+  <v-app-bar class="mb-3" app color="green lighten-1" dark>
     <a href="/" class="d-flex align-center text-decoration-none">
       <v-img
           alt="Grandpa Care Logo"
@@ -12,7 +8,7 @@
           src="@/assets/care.png"
           transition="scale-transition"
           width="40"
-      />
+      ></v-img>
 
       <h2 style="color: white;">Grandpa Care</h2>
     </a>
@@ -40,11 +36,7 @@
       </v-menu>
     </div>
 
-    <v-btn
-        v-else
-        href="/login"
-        text
-    >
+    <v-btn v-else href="/login" text>
       <span class="mr-2">Login</span>
       <v-icon>account_circle</v-icon>
     </v-btn>
@@ -53,17 +45,18 @@
 </template>
 
 <script>
-import store from '../store';
+// @ is an alias to /src
+import store from '@/store';
 
 export default {
   name: 'Navbar',
 
   computed: {
-    loggedIn: () => {
+    loggedIn () {
       return store.state.user.loggedIn;
     },
 
-    username: () => {
+    username() {
       return localStorage.username;
     },
   },

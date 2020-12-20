@@ -13,10 +13,11 @@
 </template>
 
 <script>
-import Navbar from './components/Navbar.vue';
-import Footer from './components/Footer.vue';
+// @ is an alias to /src
+import Navbar from '@/components/Navbar.vue';
+import Footer from '@/components/Footer.vue';
 import AlarmPanicButton from "@/components/AlarmPanicButton";
-import store from './store';
+import store from '@/store';
 
 export default {
   name: 'App',
@@ -30,9 +31,6 @@ export default {
     Footer,
     AlarmPanicButton,
   },
-
-  data: () => ({
-  }),
 
   mounted() {
     if (localStorage.token && localStorage.token !== 'null') {

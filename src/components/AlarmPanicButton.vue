@@ -35,6 +35,7 @@
 </template>
 
 <script>
+// @ is an alias to /src
 import io from 'socket.io-client';
 import axios from 'axios';
 import store from "@/store";
@@ -48,19 +49,19 @@ export default {
   },
 
   computed: {
-    username () {
+    username() {
       return localStorage.username;
     },
 
-    thingyId () {
+    thingyId() {
       return localStorage.thingyId;
     },
 
-    authConfig () {
+    authConfig() {
       return store.computed.user.authConfig();
     },
 
-    alarm () {
+    alarm() {
       return store.state.user.alarm;
     },
   },
@@ -69,7 +70,7 @@ export default {
     sendMessage() {
       this.socket.emit('SEND_MESSAGE', {
         user: this.username,
-        message: this.message
+        message: this.message,
       });
       this.message = '';
     },

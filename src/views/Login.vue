@@ -20,7 +20,7 @@ export default {
   },
 
   computed: {
-    loggedIn () {
+    loggedIn() {
       return store.state.user.loggedIn;
     },
   },

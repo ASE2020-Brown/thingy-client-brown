@@ -5,10 +5,12 @@
     </v-card-title>
     <v-card-text>
 
+      <!-- Connection error -->
       <v-alert v-if="!connection" type="error">
         Error: Not connected to API! Please try again!
       </v-alert>
 
+      <!-- Form -->
       <v-form>
         <v-text-field
             type="text"
@@ -31,7 +33,7 @@
             v-model="password"
             prepend-inner-icon="mdi-lock"
             :append-icon="visiblePassword ? 'mdi-eye' : 'mdi-eye-off'"
-            @click:append="visiblePassword = !visiblePassword"
+            @click="switchPasswordVisibility"
         ></v-text-field>
         <v-text-field
             :type="visiblePassword ? 'text' : 'password'"
@@ -39,7 +41,7 @@
             v-model="passwordRepeat"
             prepend-inner-icon="mdi-lock"
             :append-icon="visiblePassword ? 'mdi-eye' : 'mdi-eye-off'"
-            @click:append="visiblePassword = !visiblePassword"
+            @click="switchPasswordVisibility"
         ></v-text-field>
         <v-alert v-if="(!submittedEmpty) && (!passwordsAreEqual)" type="error">
           Passwords don't match!
@@ -66,7 +68,7 @@ import axios from 'axios';
 export default {
   name: 'RegisterForm',
 
-  data: function () {
+  data() {
     return {
       connection: true,
       visiblePassword: false,
@@ -82,6 +84,10 @@ export default {
   },
 
   methods: {
+    switchPasswordVisibility() {
+      this.visiblePassword = !(this.visiblePassword);
+    },
+
     submit() {
       if (this.check()) {
         this.register();

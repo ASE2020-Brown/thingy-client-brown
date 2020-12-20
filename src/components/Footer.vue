@@ -10,8 +10,6 @@
 </template>
 
 <script>
-import store from '../store';
-
 export default {
   name: 'Footer',
 };

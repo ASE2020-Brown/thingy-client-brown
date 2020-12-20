@@ -1,8 +1,11 @@
 <template>
   <v-card class="mx-auto my-3" max-width="800">
+
     <v-card-title>
       <h1>Logged in as {{ username }}</h1>
     </v-card-title>
+
+    <!-- User information -->
     <v-card-text>
       <v-simple-table>
         <template v-slot:default>
@@ -20,29 +23,27 @@
               <td>
                 {{ chatId }}
 
-                <!-- invite button -->
+                <!-- Invite button -->
                 <span class="text-center ml-5">
-                  <v-dialog
-                      v-model="inviting"
-                      width="500"
-                  >
+                  <v-dialog v-model="inviting" width="500">
+
+                    <!-- Button itself -->
                     <template v-slot:activator="{ on, attrs }">
-                      <v-btn
-                          color="blue lighten-2"
-                          dark
-                          v-bind="attrs"
-                          v-on="on"
-                      >
+                      <v-btn color="blue lighten-2" dark v-bind="attrs" v-on="on">
                         <v-icon>mdi-telegram</v-icon>
                         <span class="mr-2">invite</span>
                       </v-btn>
                     </template>
 
+                    <!-- Popup dialog -->
                     <v-card>
+
+                      <!-- Info -->
                       <v-card-title class="headline grey lighten-2">
                         Send email invitation for telegram
                       </v-card-title>
 
+                      <!-- Text field -->
                       <v-card-text>
                         <v-text-field
                             type="text"
@@ -55,20 +56,13 @@
 
                       <v-divider></v-divider>
 
+                      <!-- Buttons -->
                       <v-card-actions>
-                        <v-btn
-                            color="primary"
-                            text
-                            @click="closeDialog"
-                        >
+                        <v-btn color="primary" text @click="closeDialog">
                           Cancel
                         </v-btn>
                         <v-spacer></v-spacer>
-                        <v-btn
-                            color="blue"
-                            text
-                            @click="invite"
-                        >
+                        <v-btn color="blue" text @click="invite">
                           Send
                         </v-btn>
                       </v-card-actions>
@@ -82,14 +76,18 @@
         </template>
       </v-simple-table>
     </v-card-text>
+
+    <!-- Delete and Logout buttons -->
     <v-card-actions>
       <v-btn color="error" @click="deleteAccount">Delete account</v-btn>
       <v-btn color="error" @click="logout">Logout</v-btn>
     </v-card-actions>
+
   </v-card>
 </template>
 
 <script>
+// @ is an alias to /src
 import store from "@/store";
 import axios from "axios";
 
@@ -122,7 +120,7 @@ export default {
 
     config () {
       return store.getters["user/authConfig"];
-    }
+    },
   },
 
   methods: {

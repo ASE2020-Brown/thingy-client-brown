@@ -23,13 +23,14 @@
 </template>
 
 <script>
+// @ is an alias to /src
 import axios from "axios";
-import store from "../store";
+import store from "@/store";
 
 export default {
   name: "DataLog",
 
-  data: function () {
+  data() {
     return {
       log: {},
     };
@@ -57,6 +58,6 @@ export default {
 
   mounted() {
     this.update();
-  }
+  },
 };
 </script>

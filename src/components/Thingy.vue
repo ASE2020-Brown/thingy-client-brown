@@ -1,5 +1,6 @@
 <template>
   <v-card class="mx-auto my-3" max-width="800">
+
     <v-card-title>
       <v-row class="mx-1">
         <h3 v-text="sensorId"></h3>
@@ -17,6 +18,7 @@
         </v-btn>
       </v-row>
     </v-card-title>
+
     <v-card-text>
       <v-simple-table>
         <tbody>
@@ -35,6 +37,7 @@
         </tbody>
       </v-simple-table>
     </v-card-text>
+
     <v-card-actions>
       <v-expansion-panels>
         <v-expansion-panel>
@@ -47,10 +50,12 @@
         </v-expansion-panel>
       </v-expansion-panels>
     </v-card-actions>
+
   </v-card>
 </template>
 
 <script>
+// @ is an alias to /src
 import axios from 'axios';
 import store from "@/store";
 import DataLog from "@/components/DataLog";
@@ -59,10 +64,10 @@ export default {
   name: 'Thingy',
 
   components: {
-    DataLog
+    DataLog,
   },
 
-  data: function () {
+  data() {
     return {
       connected: false,
       sensorName: '', // usually equal to sensorId
@@ -108,5 +113,5 @@ export default {
   mounted() {
     this.readSensorData();
   },
-}
+};
 </script>

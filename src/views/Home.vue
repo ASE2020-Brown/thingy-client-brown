@@ -11,11 +11,6 @@ import Thingy from '@/components/Thingy.vue';
 export default {
   name: 'Home',
 
-  data: function () {
-    return {
-    };
-  },
-
   components: {
     Thingy,
   },
